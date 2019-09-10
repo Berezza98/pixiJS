@@ -1,0 +1,28 @@
+{
+  "name": "pixijs",
+  "version": "1.0.0",
+  "description": "Test Pixi.JS project",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Berezza98/pixiJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Berezza98/pixiJS/issues"
+  },
+  "homepage": "https://github.com/Berezza98/pixiJS#readme",
+  "dependencies": {
+    "pixi.js": "^5.1.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
