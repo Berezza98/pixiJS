@@ -1,28 +1,38 @@
 import * as PIXI from "pixi.js";
-import Downloading from "./views/downloading";
-import Game from "./views/game";
+import DownloadingView from "./views/downloadingView";
+import GameView from "./views/gameView";
 
-export default class Application {
+export default class Application extends PIXI.Application {
   constructor(params) {
-    let defaultParams = {
+    const defaultParams = {
       width: 1280,
       height: 720
     };
-    this.app = new PIXI.Application(
-      Object.assign({}, defaultParams, params)
-    );
+    super(Object.assign({}, defaultParams, params));
+    this.downloadingView = new DownloadingView(this);
   }
 
   appendCanvas(el) {
-    document.querySelector(el).appendChild(this.app.view);
+    document.querySelector(el).appendChild(this.view);
   }
 
   showDownloadingView() {
-    const downloading = new Downloading(this.app);
-    downloading.on("loaded", () => {
-      downloading.visible = false;
+    return new Promise((resolve, reject) => {
+      this.downloadingView.on("loaded", (loader) => {
+        this.downloadingView.visible = false;
+        resolve(loader);
+      });
+      this.downloadingView.on("error", (e) => {
+        reject(e);
+      });
+      this.downloadingView.download();
+      this.stage.addChild(this.downloadingView);
     });
-    downloading.showDownloading();
-    this.app.stage.addChild(downloading);
+  }
+
+  showGameView(resources) {
+    this.gameView = new GameView(this, resources);
+    this.gameView.setBackground();
+    this.stage.addChild(this.gameView);
   }
 }

@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 
-export default class Game extends PIXI.Loader {
+export default class LoadingItems extends PIXI.Loader {
   constructor(app) {
     super();
   }
