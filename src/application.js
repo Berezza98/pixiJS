@@ -32,7 +32,7 @@ export default class Application extends PIXI.Application {
 
   showGameView(resources) {
     this.gameView = new GameView(this, resources);
-    this.gameView.setBackground();
+    this.gameView.show();
     this.stage.addChild(this.gameView);
   }
 }
